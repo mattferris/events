@@ -1,0 +1,17 @@
+{
+    "name": "mattferris/events",
+    "description": "An event dispatcher",
+    "license": "BSD-2-Clause",
+    "autoload": {
+        "psr-4": {"MattFerris\\Events\\": "src/"}
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.3"
+    },
+    "authors": [
+        {
+            "name": "Matt Ferris",
+            "email": "matt@bueller.ca"
+        }
+    ]
+}
