@@ -1,6 +1,8 @@
 events
 ======
 
+[![Build Status](https://travis-ci.org/mattferris/events.svg?branch=master)](https://travis-ci.org/mattferris/events)
+
 This is an events library with an included event logger. It's built with [Udi Dahan's Domain Events pattern](http://www.udidahan.com/2008/08/25/domain-events-take-2/) in mind.
 
 Event Handling
