@@ -2,6 +2,7 @@
 
 use MattFerris\Events\Dispatcher;
 use MattFerris\Events\Event;
+use MattFerris\Provider\ProviderInterface;
 
 class DomainEventDispatcherTest extends \PHPUnit_Framework_TestCase
 {
@@ -55,6 +56,21 @@ class DomainEventDispatcherTest extends \PHPUnit_Framework_TestCase
         $dispatcher->dispatch($event);
 
         $this->assertFalse($bWasCalled);
+    }
+
+    public function testBundleRegistration()
+    {
+        $dispatcher = new Dispatcher();
+
+        $bundle = $this->getMockBuilder(ProviderInterface::class)
+            ->setMethods(['provides'])
+            ->getMock();
+
+        $bundle->expects($this->once())
+            ->method('provides')
+            ->with($dispatcher);
+
+        $this->assertEquals($dispatcher->register($bundle), $dispatcher);
     }
 }
 

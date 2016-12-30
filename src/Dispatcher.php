@@ -14,7 +14,10 @@
 
 namespace MattFerris\Events;
 
-class Dispatcher implements DispatcherInterface
+use MattFerris\Provider\ProviderInterface;
+use MattFerris\Provider\ConsumerInterface;
+
+class Dispatcher implements DispatcherInterface, ConsumerInterface
 {
     /**
      * @var array
@@ -34,6 +37,18 @@ class Dispatcher implements DispatcherInterface
             $this->listeners[$name] = array();
         }
         $this->listeners[$name][] = $listener;
+    }
+
+    /**
+     * Register a bundle
+     *
+     * @param \MattFerris\Provider\ProviderInterface $bundle The bundle to register
+     * @return self
+     */
+    public function register(ProviderInterface $bundle)
+    {
+        $bundle->provides($this);
+        return $this;
     }
 
     /**
