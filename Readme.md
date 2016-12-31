@@ -73,6 +73,32 @@ Finally, you can listen for all events using an asterisk.
     // listen for all events
     $dispatcher->addListener('*', $handler);
 
+Event Names
+-----------
+
+For flexiblity, listeners can also be assigned to listen for arbitrary event names. An event name can be passed to the dispatch method when the event is dispatched.
+
+    $dispatcher->addListener('foo.bar', $listener);
+
+    $dispatcher->dispatch($event, 'foo.bar');
+
+Listener Priority
+-----------------
+
+By default, all listeners are given the same priority, and are called based on the order they were added. Listeners can also be assigned a priority to ensure they are called sooner or later then other listeners. The priority is an integer that is passed when adding the listener. `0` is the highest priority.
+
+    // give the listener the highest priority
+    $dispatcher->addListener('*', $listener, 0);
+
+Priorities can also be assigned using the priority constants:
+
+- `PRIORITY_HIGH` = 0
+- `PRIORITY_NORMAL` = 50
+- `PRIORITY_LOW` = 100
+
+    // alternatively, you can use the priority constant
+    $dispatcher->addListener('*', $listener, Dispatcher::PRIORITY_HIGH);
+
 Event Logging
 -------------
 
