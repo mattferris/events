@@ -99,6 +99,23 @@ Priorities can also be assigned using the priority constants:
     // alternatively, you can use the priority constant
     $dispatcher->addListener('*', $listener, Dispatcher::PRIORITY_HIGH);
 
+Event Bundles
+-------------
+
+Events can be added using bundles. Simply create a class that implements `MattFerris\Provider\ProviderInterface` and create a method called `provides()`. When passed to the `register()` method on the dispatcher, the `provides()` method will be passed an instance of the dispatcher, and you can then add listeners.
+
+    use MattFerris\Provider\ProviderInterface;
+    use MattFerris\Provider\ConsumerInterface;
+
+    class EventBundle implements ProviderInterface
+    {
+        public function provides(ConsumerInterface $dispatcher)
+        {
+            $dispatcher->addListener('*', $listener);
+            ...
+        }
+    }
+
 Event Logging
 -------------
 

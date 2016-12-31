@@ -123,7 +123,7 @@ class DomainEventDispatcherTest extends \PHPUnit_Framework_TestCase
     {
         $dispatcher = new Dispatcher();
 
-        $bundle = $this->getMockBuilder(ProviderInterface::class)
+        $bundle = $this->getMockBuilder('\MattFerris\Provider\ProviderInterface')
             ->setMethods(['provides'])
             ->getMock();
 
