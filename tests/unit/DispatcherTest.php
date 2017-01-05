@@ -11,13 +11,14 @@ class DomainEventDispatcherTest extends \PHPUnit_Framework_TestCase
         $dispatcher = new Dispatcher();
         $event = new Event();
 
-        $foo = null;
-        $listener = function () use (&$foo) { $foo = 'bar'; };
+        $foo = 0;
+        $listener = function () use (&$foo) { $foo++; };
 
         $dispatcher->addListener('MattFerris.Events.Event', $listener);
+        $dispatcher->addListener(Event::class, $listener);
         $dispatcher->dispatch($event);
 
-        $this->assertEquals($foo, 'bar');
+        $this->assertEquals($foo, 2);
     }
 
     /**

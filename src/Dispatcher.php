@@ -49,6 +49,9 @@ class Dispatcher implements DispatcherInterface, ConsumerInterface
      */
     public function addListener($name, callable $listener, $priority = self::PRIORITY_NORMAL)
     {
+        // convert blackslashes in namespaces to dots
+        $name = str_replace('\\', '.', $name);
+
         if (!array_key_exists($priority, $this->listeners)) {
             $this->listeners[$priority] = array();
         }
