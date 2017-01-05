@@ -6,7 +6,7 @@
         "psr-4": {"MattFerris\\Events\\": "src/"}
     },
     "require": {
-        "mattferris/provider": "0.2"
+        "mattferris/provider": "~0.3"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.3"
